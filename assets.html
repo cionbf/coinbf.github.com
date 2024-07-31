@@ -1,0 +1,524 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ALEC</title>
+    <link href="https://cdn.jsdelivr.net/npm/vant@4.0.11/lib/index.min.css" rel="stylesheet">
+
+    <style type="text/css">
+        :root {
+            --nut-icon-height: 16px;
+            --nut-icon-width: 16px;
+            --nut-icon-line-height: 16px;
+            --animate-duration: 1s;
+            --animate-delay: 0s
+        }
+
+        page {
+            --nut-icon-height: 20px;
+            --nut-icon-width: 20px;
+            --nut-icon-line-height: 20px;
+            --animate-duration: 1s;
+            --animate-delay: 0s
+        }
+
+        .nut-icon {
+            display: inline-block;
+            position: relative;
+            width: var(--nut-icon-width);
+            height: var(--nut-icon-height);
+            line-height: var(--nut-icon-line-height);
+            text-align: right
+        }
+
+        .nut-icon:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+
+        .nut-theme-dark .nut-navbar {
+            background: var(--nut-dark-background, #131313);
+            color: var(--nut-dark-color, var(--nut-white, #fff))
+        }
+
+        .nut-theme-dark .nut-navbar .title {
+            color: var(--nut-dark-color, var(--nut-white, #fff))
+        }
+
+        .nut-navbar {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: var(--nut-navbar-height, 44px);
+            box-sizing: border-box;
+            padding: var(--nut-navbar-padding, 0 16px);
+            background: var(--nut-navbar-background, var(--nut-white, #fff));
+            box-shadow: var(--nut-navbar-box-shadow, 0px 1px 7px 0px rgb(237, 238, 241));
+            font-size: var(--nut-navbar-title-base-font, var(--nut-font-size-2, 14px));
+            color: var(--nut-navbar-color, var(--nut-title-color2, #666666));
+            margin-bottom: var(--nut-navbar-margin-bottom, 20px);
+            overflow: hidden
+        }
+
+        .nut-navbar:active:before {
+            opacity: .1
+        }
+
+        .nut-navbar--border {
+            border-bottom: 1px solid #eee
+        }
+
+        .nut-navbar--fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%
+        }
+
+        .nut-navbar--placeholder {
+            display: block;
+            width: 100%
+        }
+
+        .nut-navbar--safe-area-inset-top {
+            padding-top: constant(safe-area-inset-top);
+            padding-top: env(safe-area-inset-top)
+        }
+
+        .nut-navbar--fixed.nut-navbar--safe-area-inset-top {
+            height: calc(var(--nut-navbar-height, 44px) + constant(safe-area-inset-top));
+            height: calc(var(--nut-navbar-height, 44px) + env(safe-area-inset-top))
+        }
+
+        .nut-navbar--clickable:before {
+            position: absolute;
+            content: " ";
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--nut-black, #000);
+            border: inherit;
+            border-color: var(--nut-black, #000);
+            border-radius: inherit;
+            transform: translate(-50%, -50%);
+            opacity: 0
+        }
+
+        .nut-navbar .nutui-iconfont .nut-icon-left {
+            text-align: left
+        }
+
+        .nut-navbar__title {
+            min-width: 53%;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center
+        }
+
+        .nut-navbar__title .title {
+            min-width: var(--nut-navbar-title-width, 100px);
+            font-size: var(--nut-navbar-title-font, var(--nut-font-size-2, 14px));
+            font-weight: var(--nut-navbar-title-font-weight, 0);
+            color: var(--nut-navbar-title-font-color, var(--nut-navbar-color, var(--nut-title-color2, #666666)));
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            overflow: hidden
+        }
+
+        .nut-navbar__title.icon .icon {
+            margin: var(--nut-navbar-title-icon-margin, 0 0 0 13px)
+        }
+
+        .nut-navbar__title .icon {
+            font-size: 0
+        }
+
+        .nut-navbar__title .nut-icon {
+            display: inline
+        }
+
+        .nut-navbar__title-desc {
+            font-size: var(--nut-cell-title-desc-font, var(--nut-font-size-1, 12px))
+        }
+
+        .nut-navbar__title .text__title {
+            display: inline-block
+        }
+
+        .nut-navbar__title .nut-tabs__titles {
+            background: var(--nut-white, #fff)
+        }
+
+        .nut-navbar__title .nut-tab-pane {
+            display: none
+        }
+
+        .nut-navbar__title ::-webkit-scrollbar {
+            display: none
+        }
+
+        .nut-navbar__left {
+            font-size: var(--nut-cell-desc-font, var(--nut-font-size-2, 14px));
+            color: var(--nut-cell-desc-color, var(--nut-disable-color, #cccccc));
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0 16px
+        }
+
+        .nut-navbar__right {
+            font-size: var(--nut-cell-desc-font, var(--nut-font-size-2, 14px));
+            color: var(--nut-cell-desc-color, var(--nut-disable-color, #cccccc));
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            cursor: pointer
+        }
+
+        .nut-navbar__right .rightIcon,
+        .nut-navbar__right .leftIcon {
+            margin-left: 16px
+        }
+
+        .nut-cell-group {
+            display: block
+        }
+
+        .nut-cell-group__title {
+            display: inherit;
+            padding: var(--nut-cell-group-title-padding, 0 10px);
+            color: var(--nut-cell-group-title-color, #909ca4);
+            font-size: var(--nut-cell-group-title-font-size, var(--nut-font-size-2, 14px));
+            line-height: var(--nut-cell-group-title-line-height, 20px);
+            margin-top: 30px;
+            margin-bottom: 10px
+        }
+
+        .nut-cell-group__desc {
+            display: inherit;
+            padding: var(--nut-cell-group-desc-padding, 0 10px);
+            color: var(--nut-cell-group-desc-color, #909ca4);
+            font-size: var(--nut-cell-group-desc-font-size, var(--nut-font-size-1, 12px));
+            line-height: var(--nut-cell-group-desc-line-height, 16px);
+            margin-top: 10px;
+            margin-bottom: 10px
+        }
+
+        .nut-cell-group__wrap {
+            display: inherit;
+            border-radius: var(--nut-cell-border-radius, 6px);
+            box-shadow: var(--nut-cell-box-shadow, 0px 1px 7px 0px rgb(237, 238, 241));
+            overflow: hidden;
+            background-color: var(--nut-cell-group-background-color, var(--nut-white, #fff));
+            margin: 10px 0
+        }
+
+        .nut-cell-group__wrap .nut-cell {
+            margin: 0;
+            box-shadow: none;
+            border-radius: 0
+        }
+
+        .nut-cell-group .nut-cell:after {
+            border-bottom: var(--nut-cell-after-border-bottom, 1px solid #f5f6f7)
+        }
+
+        .nut-theme-dark .nut-cell {
+            background: var(--nut-dark-background2, #1b1b1b);
+            color: var(--nut-dark-color, var(--nut-white, #fff));
+            box-shadow: none
+        }
+
+        .nut-cell {
+            position: relative;
+            display: flex;
+            width: 100%;
+            line-height: var(--nut-cell-line-height, 20px);
+            padding: var(--nut-cell-padding, 13px 16px);
+            background: var(--nut-cell-background, var(--nut-white, #fff));
+            border-radius: var(--nut-cell-border-radius, 6px);
+            box-shadow: var(--nut-cell-box-shadow, 0px 1px 7px 0px rgb(237, 238, 241));
+            font-size: var(--nut-cell-title-font, var(--nut-font-size-2, 14px));
+            color: var(--nut-cell-color, var(--nut-title-color2, #666666));
+            margin: 10px 0;
+            box-sizing: border-box
+        }
+
+        .nut-cell--center {
+            align-items: center
+        }
+
+        .nut-cell--large {
+            font-size: var(--nut-cell-large-title-font, var(--nut-font-size-large, var(--nut-font-size-3, 16px)));
+            padding: var(--nut-cell-large-padding, 15px 16px)
+        }
+
+        .nut-cell--large .nut-cell__title-desc {
+            font-size: var(--nut-cell-large-title-desc-font, var(--nut-font-size-base, var(--nut-font-size-2, 14px)))
+        }
+
+        .nut-cell:last-child:after {
+            border: 0 !important
+        }
+
+        .nut-cell:after {
+            position: absolute;
+            box-sizing: border-box;
+            content: " ";
+            pointer-events: none;
+            right: var(--nut-cell-after-right, 16px);
+            bottom: 0;
+            left: 16px;
+            transform: scaleY(.5)
+        }
+
+        .nut-cell:active:before {
+            opacity: .1
+        }
+
+        .nut-cell--clickable {
+            cursor: pointer
+        }
+
+        .nut-cell--clickable:before {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--nut-black, #000);
+            border: inherit;
+            border-color: var(--nut-black, #000);
+            border-radius: inherit;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            content: " "
+        }
+
+        .nut-cell__icon {
+            display: flex;
+            flex-direction: row;
+            margin: var(--nut-cell-default-icon-margin, 0 4px 0 0px);
+            align-items: center
+        }
+
+        .nut-cell__title {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-width: 80px
+        }
+
+        .nut-cell__title-desc {
+            font-size: var(--nut-cell-title-desc-font, var(--nut-font-size-1, 12px))
+        }
+
+        .nut-cell__value {
+            display: inline-block;
+            text-align: right;
+            flex: 1;
+            font-size: var(--nut-cell-desc-font, var(--nut-font-size-2, 14px));
+            color: var(--nut-cell-desc-color, var(--nut-disable-color, #cccccc))
+        }
+
+        .nut-cell__value--alone {
+            color: var(--nut-cell-color, var(--nut-title-color2, #666666))
+        }
+
+        .nut-cell__link {
+            color: #979797;
+            align-self: center
+        }
+
+        .nut-form-item__label.nut-cell__title {
+            min-width: auto
+        }
+
+        .nut-form-item__label.required:before {
+            content: "*";
+            color: var(--nut-form-item-required-color, var(--nut-required-color, #fa2c19));
+            margin-right: var(--nut-form-item-required-margin-right, 4px)
+        }
+
+        .nut-form-item__body {
+            flex: 1;
+            display: flex !important;
+            flex-direction: column
+        }
+
+        .nut-form-item__body__slots {
+            text-align: var(--nut-form-item-body-slots-text-align, left)
+        }
+
+        .nut-form-item__body__slots .nut-input-text {
+            font-size: var(--nut-form-item-body-font-size, 14px);
+            text-align: var(--nut-form-item-body-input-text-align, left);
+            color: var(--nut-black, #000);
+            width: 100%;
+            outline: 0 none;
+            border: 0;
+            text-decoration: none;
+            background: transparent;
+            padding: 0;
+            margin: 0
+        }
+
+        .nut-form-item__body__slots .nut-range-container {
+            min-height: 24px
+        }
+
+        .nut-form-item__body__slots .nut-textarea {
+            padding: 0 !important
+        }
+
+        .nut-form-item__body__slots .nut-textarea .nut-textarea__textarea {
+            text-align: var(--nut-form-item-body-input-text-align, left)
+        }
+
+        .nut-form-item__body__tips {
+            text-align: var(--nut-form-item-tip-text-align, left);
+            font-size: var(--nut-form-item-tip-font-size, 10px);
+            color: var(--nut-form-item-error-message-color, var(--nut-required-color, #fa2c19))
+        }
+
+        .nut-theme-dark .nut-invoice .nut-invoice__submit {
+            background: var(--nut-dark-background2, #1b1b1b)
+        }
+
+        .nut-invoice {
+            width: 100%;
+            position: relative
+        }
+
+        .nut-invoice .nut-cell {
+            align-items: baseline
+        }
+    </style>
+    
+    <style type="text/css">
+        .my-assets {
+            font-family: PingFangSC-Regular, PingFang SC;
+        }
+
+        .my-assets .nut-cell-group:first-child .nut-cell-group__wrap {
+            margin-top: 0;
+        }
+
+        .my-assets .li-name {
+            font-size: 14px;
+            font-weight: 400;
+            color: #969799;
+            line-height: 20px;
+        }
+
+        .my-assets .li-row {
+            padding-top: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #323233;
+            line-height: 16px;
+        }
+
+        .my-assets .li-row .row_sub {
+            font-size: 12px;
+            font-weight: 400;
+            color: #414766;
+            line-height: 17px;
+        }
+
+        .my-assets .buts .nut-button {
+            margin-left: 10px;
+        }
+
+        .my-assets .but {
+            font-size: 12px;
+            font-weight: 600;
+            color: #478BFF !important;
+        }
+
+        .my-assets .sub-text {
+            padding: 16px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #A5A9BC;
+            line-height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+<!--        <div class="navbar">-->
+<!--            <view class="nut-navbar&#45;&#45;placeholder m-navbar p0">-->
+<!--                <view class="nut-navbar" style="z-index: 10;padding:0">-->
+<!--                    <view class="nut-navbar__left"><svg class="nut-icon" xmlns="http://www.w3.org/2000/svg" color=""-->
+<!--                            viewBox="0 0 1024 1024" aria-labelledby="" role="presentation">-->
+<!--                            <path-->
+<!--                                d="M657.92 983.04c-14.336 0-28.672-5.632-39.936-16.384L211.968 560.64c-10.752-10.752-16.384-25.088-16.384-39.936 0-14.848 6.144-29.184 16.384-39.936L617.984 74.752c22.016-22.016 57.856-22.016 79.872 0s22.016 57.856 0 79.872l-366.08 366.08 366.08 366.08c22.016 22.016 22.016 57.856 0 79.872-11.264 11.264-25.6 16.384-39.936 16.384z"-->
+<!--                                fill="currentColor" fill-opacity="0.9"></path>-->
+<!--                        </svg></view>-->
+<!--                    <view class="nut-navbar__title">-->
+<!--                        <view class="title">我的资产</view>-->
+<!--                    </view>-->
+<!--                    <view class="nut-navbar__right"></view>-->
+<!--                </view>-->
+<!--            </view>-->
+<!--        </div>-->
+        <div class="my-assets">
+            <view class="nut-cell-group">
+                <view class="nut-cell-group__wrap">
+                    <view class="nut-cell">
+                        <div>
+                            <div class="li-name">我的邀请人</div>
+                            <div class="li-row flex"><span class="flex-1" id="referrer">-</span></div>
+                        </div>
+                    </view>
+                    <view class="nut-cell">
+                        <div>
+                            <div class="li-name">我的算力</div>
+                            <div class="li-row flex"><span class="flex-1" id="power">0.00000000</span></div>
+                        </div>
+                    </view>
+
+                </view>
+            </view>
+<!--            <view class="nut-cell-group">-->
+<!--                <view class="nut-cell-group__wrap">-->
+<!--                    <view class="nut-cell nut-cell&#45;&#45;center">-->
+<!--                        <view class="nut-cell__title">-->
+<!--                            <div class="li-name">可领取的FOUL</div>-->
+<!--                            <div class="li-row flex"><span class="flex-1" id="balance">0.00000000</span></div>-->
+<!--                        </view>-->
+<!--                        <view class="nut-cell__value" style="text-align: right;"><span>-->
+<!--                                <view class="nut-button nut-button&#45;&#45;primary nut-button&#45;&#45;small nut-button&#45;&#45;round but"-->
+<!--                                    style="color: rgb(255, 255, 255); ">-->
+<!--                                    <view class="nut-button__wrap">-->
+<!--                                        <view onclick="take()">提取</view>-->
+<!--                                    </view>-->
+<!--                                </view>-->
+<!--                            </span></view>-->
+<!--                    </view>-->
+
+<!--                </view>-->
+<!--            </view>-->
+<!--            <div class="sub-text"> 出售BTCN扣除10%手续费，价格已pancakeswap实时价格为准 </div>-->
+        </div>
+    </div>
+    <script src="assets/js/web3.min.js"></script>
+    <script src="assets/js/dapp.js?v=5"></script>
+    <script src="assets/js/simu.js?v=5"></script>
+    <script type="text/javascript">
+        loadAsset();
+    </script>
+</body>
+
+</html>
