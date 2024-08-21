@@ -12,70 +12,111 @@ const CHAIN_BSC_TEST = {
     "nativeCurrency": {"name": "BNB", "symbol": "BNB", "decimals": 18},
     "blockExplorerUrls": ["https://testnet.bscscan.com"]
 }
-const USDT = "0x04D768834C5D1711984b599559961f59b4E3835a";
-const SIMU = "0x04D768834C5D1711984b599559961f59b4E3835a";
-const web3 = dapp.web3();
-console.log("init simu");
 
-function getQueryString(name) {
-    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-    let r = window.location.search.substring(1).match(reg);
-    if (r != null) {
-        return decodeURIComponent(r[2]);
-    }
-    return null;
+const web3 = dapp.web3();
+let isWeb3Connected = false;
+
+async function connect() {
+    const account = await dapp.requestAccounts();
+    await dapp.addEthereumChain(CHAIN_BSC_TEST);
+    // await dapp.addEthereumChain(CHAIN_BSC_MAIN);
+    isWeb3Connected = true;
+    return account;
 }
 
-let referrer = getQueryString("referrer");
+connect().then((account) => {
+    document.querySelector("#btn-connect").innerText = account;
+    myNFT(account);
+    myStakingNFT(account);
+    take(true);
+});
 
-function connect() {
-    const btn = document.getElementById("top-action-button");
-    dapp.requestAccounts().then(function (account) {
-        dapp.addEthereumChain(CHAIN_BSC_TEST).then(function () {
-            document.getElementById("btn-connect").innerText = account;
-        }).catch(function (e) {
-            console.log("addEthereumChain error:", e)
-            btn.onclick = function () {
-                connect();
-            }
-        })
-    }).catch(function (e) {
-        console.log("requestAccounts error:", e)
-        btn.onclick = function () {
-            connect();
-        }
+
+const _MINT = '0x04348415C083c79fCBC0D3f9EC14767838Ba3BAF';
+const _NTF = '0x6c54B8e46c836cc898A52A4D6b0c316035874406';
+const _Staking = '0x770AEaE82e29F1ebd09AdA86c88ccDe6309b2525';
+
+function myNFT(account) {
+    const data = web3.eth.abi.encodeFunctionCall({name: 'tokenIds', type: 'function', inputs: [{name: "account", type: "address"}]}, [account]);
+    dapp.ethCall(_NTF, data).then(function (result) {
+        const values = web3.eth.abi.decodeParameters([{type: 'uint256[]', name: 'tokenIds'},], result);
+        // const select = document.getElementById("my-nft");
+        // console.log(select);
+        // while (select.options.length > 0) {
+        //     select.options.remove(0);
+        // }
+        console.log(values.tokenIds);
+        // values.tokenIds.forEach(function (tokenId) {
+        //     const o = new Option(tokenId, tokenId);
+        //     select.options.add(o);
+        // });
+    });
+}
+
+function myStakingNFT(account) {
+    const data = web3.eth.abi.encodeFunctionCall({name: 'tokenIds', type: 'function', inputs: [{name: "account", type: "address"}]}, [account]);
+    dapp.ethCall(_Staking, data).then(function (result) {
+        const values = web3.eth.abi.decodeParameters([{type: 'uint256[]', name: 'tokenIds'},], result);
+        // const select = document.getElementById("staking-nft");
+        // console.log(select);
+        // while (select.options.length > 0) {
+        //     select.options.remove(0);
+        // }
+        console.log(values.tokenIds);
+        // values.tokenIds.forEach(function (tokenId) {
+        //     const o = new Option(tokenId, tokenId);
+        //     select.options.add(o);
+        // });
+    });
+}
+
+function mint(level) {
+    let value = 0;
+    if (level === 1) {
+        value = 0.5;
+    } else if (level === 2) {
+        value = 1;
+    } else if (level === 3) {
+        value = 5;
+    } else if (level === 4) {
+        value = 10;
+    }
+    const data = web3.eth.abi.encodeFunctionCall({name: 'mint', type: 'function',}, []);
+    dapp.sendTransaction(_MINT, dapp.toWei(value), data).then(function (result) {
+        console.log(result);
     })
 }
 
-window.onload = function () {
-    console.log("simu window onload");
-    connect();
+async function approveNFT(tokenId) {
+    const data = web3.eth.abi.encodeFunctionCall({name: 'approve', type: 'function', inputs: [{name: "spender", type: "address"}, {name: "tokenId", type: "uint256"}],}, [_Staking, tokenId]);
+    return await  dapp.sendTransaction(_NTF, 0, data);
 }
 
-web3.provider.on('accountsChanged', (accounts) => {
-})
+function zhiya() {
+    const tokenId = document.querySelector("#my-nft").value;
+    const data = web3.eth.abi.encodeFunctionCall({name: 'zhiya', type: 'function', inputs: [{name: "tokenId", type: "uint256"}],}, [tokenId]);
+    dapp.calls(() => approveNFT(tokenId), () => dapp.sendTransaction(_Staking, 0, data)).then(function (result) {
+        console.log(result);
+    });
+}
 
-async function buy(amount) {
-    const value = dapp.toWei(amount);
-    data = web3.eth.abi.encodeFunctionCall({
-        name: 'subscribe',
-        type: 'function',
-        inputs: [{name: "value", type: "uint256"}],
-    }, [amount]);
-    data = await dapp.calls(() => dapp.approve(USDT, SIMU, value), () => dapp.sendTransaction(SIMU, 0, data))
+function shuhui() {
+    const tokenId = document.querySelector("#staking-nft").value;
+    const data = web3.eth.abi.encodeFunctionCall({name:'shuhui', type: 'function', inputs: [{name: "tokenId", type: "uint256"}],}, [tokenId]);
+    dapp.sendTransaction(_Staking, 0, data);
+}
+
+function take(isQuery){
+    const data = web3.eth.abi.encodeFunctionCall({name: 'take', type: 'function',}, []);
     console.log(data);
-}
+    if (isQuery) {
+        dapp.ethCall(_Staking, data).then(function (result) {
+            const values = web3.eth.abi.decodeParameters([{type: 'uint256', name: 'value'},], result);
+            console.log("可领取奖励:" + values.value);
+        });
+    } else {
+        dapp.sendTransaction(_Staking, 0, data).then(function (result) {
 
-async function buy0() {
-    const value = document.getElementsByName("number")[0].value;
-    if (!dapp.isNumeric(value)) {
-        alert("数量输入不正确");
+        });
     }
-    let data = web3.eth.abi.encodeFunctionCall({
-        name: 'subscribe',
-        type: 'function',
-        inputs: [{name: "value", type: "uint256"}],
-    }, [dapp.toWei(value)]);
-    data = await dapp.calls(() => dapp.approve(USDT, SIMU, dapp.toWei(value)), () => dapp.sendTransaction(SIMU, 0, data))
-    console.log(data);
 }

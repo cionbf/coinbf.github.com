@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>ALEC</title>
+        <title>BF</title>
 <!--        <script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>-->
         <script>
             // VConsole will be exported to `window.VConsole` by default.
@@ -64,7 +64,6 @@
                                             </li>
                                             <li><a href="#about" class="section-link">About us</a></li>
                                             <li><a href="#sales" class="section-link">Sales</a></li>
-                                            <li><a href="#roadmap" class="section-link">Roadmap</a></li>
                                             <li class="menu-item-has-children"><a href="#">Blog</a>
 <!--                                                <ul class="sub-menu">-->
 <!--                                                    <li><a href="blog.html">Our Blog</a></li>-->
@@ -72,7 +71,6 @@
 <!--                                                </ul>-->
                                             </li>
                                             <li><a href="#contact" class="section-link">Contact us</a></li>
-                                            <li><a href="assets.html" class="section-link">My assets</a></li>
                                         </ul>
                                     </div>
                                     <div class="header-action d-md-block">
@@ -86,7 +84,7 @@
 <!--                                                </ul>-->
 <!--                                            </li>-->
                                             <li class="header-btn">
-                                                <a href="#" class="btn" id="btn-connect" onclick="connect()">Connected wallet</a>
+                                                <a href="#" class="btn" id="btn-connect" onclick="connect()">Connect wallet</a>
                                                 <a href="#" class="btn" id="btn-bind" data-bs-toggle="modal" data-bs-target="#exampleModal" hidden="hidden">Bind referees</a>
                                             </li>
                                         </ul>
@@ -139,7 +137,7 @@
                             <div class="banner-content text-center">
                                 <img src="assets/img/icon/fire.png" alt="">
 
-                                <h2 class="title">Joining <span>ALEC</span> to jointly build an autonomous community</h2>
+                                <h2 class="title">Joining <span>BF</span> to jointly build an autonomous community</h2>
                             </div>
 <!--                            <div class="banner-progress-wrap">-->
 <!--                                <ul>-->
@@ -157,13 +155,13 @@
                     <div class="row justify-content-center">
                         <div class="col-xl-10">
                             <div class="banner-countdown-wrap text-center">
-                                <h2 class="title">Nodal private placement</h2>
+                                <h2 class="title">Co-builder</h2>
 <!--                                <div class="coming-time" data-countdown="2024/1/29"></div>-->
                                 <div class="coming-time" data-countdown="2024/1/29">
-                                    <div class="time-count day" onclick="buy(500)"><span>500U</span>knight</div>
-                                    <div class="time-count hour" onclick="buy(2000)"><span>2000U</span>general</div>
-                                    <div class="time-count min" onclick="buy(5000)"><span>5000U</span>Count</div>
-                                    <div class="time-count sec" onclick="buy(10000)"><span>10000U</span>duke</div>
+                                    <div class="time-count day" onclick="mint(1)"><span>0.5 ETH</span>Primary Partner</div>
+                                    <div class="time-count hour" onclick="mint(2)"><span>1 ETH</span>Intermediate Partner</div>
+                                    <div class="time-count min" onclick="mint(3)"><span>5 ETH</span>Advanced Partner</div>
+                                    <div class="time-count sec" onclick="mint(4)"><span>10 ETH</span>Special Partner</div>
                                 </div>
                             </div>
                         </div>
@@ -171,28 +169,6 @@
                 </div>
 
             </section>
-            <section id="contact" class="contact-area pt-70 pb-110">
-                <div class="container">
-
-
-                    <div class="contact-form-wrap">
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-grp">
-                                        <input type="number" name="number" placeholder="Please enter the number of USDT for private placement" required>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="submit-btn text-center">
-                                <button type="button" class="btn" onclick="buy0()">Private placement</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-
             <!-- banner-area-end -->
 
             <!-- about-area -->
@@ -209,8 +185,7 @@
                             <div class="about-content wow fadeInRight" data-wow-delay=".2s">
                                 <div class="section-title mb-30">
                                     <span class="sub-title">Who we are</span>
-                                    <h2 class="title">The world's first <span>zero privilege</span> platform to provide rewards
-
+                                    <h2 class="title">Global community building platform
                                     </h2>
                                 </div>
 <!--                                <p>The World’s 1st ICO Platform That Offers Rewards and The platform helps investors to make easy to purchase and sell-->
@@ -262,7 +237,7 @@
                         <div class="col-xl-6">
                             <div class="section-title text-center mb-50">
                                 <span class="sub-title">why Choose us</span>
-                                <h2 class="title">Why Choose Our <span>ALEC</span></h2>
+                                <h2 class="title">Why Choose Our <span></span></h2>
                             </div>
                         </div>
                     </div>
@@ -361,13 +336,7 @@
                                 <div class="chart-wrap wow fadeInRight" data-wow-delay=".2s">
                                     <img src="assets/img/images/chart.png" alt="">
                                     <ul>
-                                        <li>15% is awarded to referees according to weight</li>
-                                        <li>70% Weighted community performance</li>
-                                        <li>8% Foundation</li>
-                                        <li>3% Community construction</li>
-                                        <li>3% node reward</li>
-                                        <li>1% technique</li>
-
+                                        <li>是的反攻倒算风格的沙发</li>
                                     </ul>
                                 </div>
                             </div>
@@ -386,9 +355,9 @@
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="funding" role="tabpanel" aria-labelledby="funding-tab">
                                             <div class="chart-content-inner">
-                                                <h2 class="title">1 ALEC = ? USDT</h2>
-                                                <p>A total of 100 million pieces were issued, 10 million went into the bottom pool, node private placement, and obtained 2 times the computing power, and private placement funds were used for public pricing. 90 million yuan injection mining pool contract for ecological development incentives</p>
-                                                <p>The market reward mechanism is shown in the figure</p>
+                                                <h2 class="title">1 BF = ? USDT</h2>
+                                                <p>A total of 2210 NFTs and 100 million tokens will be issued. All tokens are produced from pledges. The daily settlement tokens are unlocked based on the pledge quantity, community activity, and community development. 10, 20, 200, 2000</p>
+<!--                                                <p>The market reward mechanism is shown in the figure</p>-->
 <!--                                                <a href="#" class="btn">Buy Now</a>-->
                                             </div>
                                         </div>
@@ -519,11 +488,12 @@
                                         <span class="sub-title">Participation rules</span>
                                         <h2 class="title">Participation <span>rules</span></h2>
                                     </div>
-                                    <ul class="document-list">
-<!--                                        <li>100%U participates in 2.5 times outgoing calls</li>-->
-                                        <li>20%F fuel +100%U participate 2.5 times out</li>
-                                        <li>20%F fuel +100% equivalent ALEC participation 3 times out</li>
-                                    </ul>
+                                    Subscribe to co-builder status
+<!--                                    <ul class="document-list">-->
+<!--&lt;!&ndash;                                        <li>100%U participates in 2.5 times outgoing calls</li>&ndash;&gt;-->
+<!--                                        <li>20%F fuel +100%U participate 2.5 times out</li>-->
+<!--                                        <li>20%F fuel +100% equivalent ALEC participation 3 times out</li>-->
+<!--                                    </ul>-->
 <!--                                    <a href="#" class="btn">Download Doc</a>-->
                                 </div>
                             </div>
@@ -625,53 +595,53 @@
             <!-- contact-area -->
             <section id="contact" class="contact-area pt-70 pb-110">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-lg-8">
-                            <div class="section-title text-center mb-70">
-                                <span class="sub-title">Contact</span>
-                                <h2 class="title">Contact the <span>project team</span></h2>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-info-wrap">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-4 col-sm-6">
-                                <div class="contact-info-item">
-                                    <div class="icon">
-                                        <span class="icon-background"></span>
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div class="content">
-                                        <p>btcnmarketing@gmail.com
-<!--                                            <br> infoweb@gmail.com-->
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+<!--                    <div class="row justify-content-center">-->
+<!--                        <div class="col-lg-8">-->
+<!--                            <div class="section-title text-center mb-70">-->
+<!--                                <span class="sub-title">Contact</span>-->
+<!--                                <h2 class="title">Contact the <span>project team</span></h2>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="contact-info-wrap">-->
+<!--                        <div class="row justify-content-center">-->
 <!--                            <div class="col-lg-4 col-sm-6">-->
 <!--                                <div class="contact-info-item">-->
 <!--                                    <div class="icon">-->
 <!--                                        <span class="icon-background"></span>-->
-<!--                                        <i class="fas fa-phone"></i>-->
+<!--                                        <i class="fas fa-envelope"></i>-->
 <!--                                    </div>-->
 <!--                                    <div class="content">-->
-<!--                                        <p>+84 0977425031<br> +998 765 775 34</p>-->
+<!--                                        <p>btcnmarketing@gmail.com-->
+<!--&lt;!&ndash;                                            <br> infoweb@gmail.com&ndash;&gt;-->
+<!--                                        </p>-->
 <!--                                    </div>-->
 <!--                                </div>-->
 <!--                            </div>-->
-<!--                            <div class="col-lg-4 col-sm-6">-->
-<!--                                <div class="contact-info-item">-->
-<!--                                    <div class="icon">-->
-<!--                                        <span class="icon-background"></span>-->
-<!--                                        <i class="fas fa-map-marker-alt"></i>-->
-<!--                                    </div>-->
-<!--                                    <div class="content">-->
-<!--                                        <p>State/province/area: <br>Georgia 198</p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-                        </div>
-                    </div>
+<!--&lt;!&ndash;                            <div class="col-lg-4 col-sm-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="contact-info-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="icon">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="icon-background"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <i class="fas fa-phone"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="content">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>+84 0977425031<br> +998 765 775 34</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <div class="col-lg-4 col-sm-6">&ndash;&gt;-->
+<!--&lt;!&ndash;                                <div class="contact-info-item">&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="icon">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <span class="icon-background"></span>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <i class="fas fa-map-marker-alt"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <div class="content">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <p>State/province/area: <br>Georgia 198</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                        </div>-->
+<!--                    </div>-->
 <!--                    <div class="contact-form-wrap">-->
 <!--                        <form action="#">-->
 <!--                            <div class="row">-->
@@ -828,7 +798,7 @@
         <script src="assets/js/main.js"></script>
 
         <script src="assets/js/web3.min.js"></script>
-        <script src="assets/js/dapp.js?v=5"></script>
-        <script src="assets/js/simu.js?v=5"></script>
+        <script src="assets/js/dapp.js?v=1"></script>
+        <script src="assets/js/simu.js?v=1"></script>
     </body>
 </html>
